@@ -1,0 +1,66 @@
+.kzgj-extension-manager-app {
+  /* 背景色 */
+  --bg-dark: linear-gradient(90deg, rgb(172, 203, 238, 0.75) 0%, rgba(231, 240, 253, 0.75) 100%);
+  --bg: rgba(255, 255, 255, 0.2);
+  --bg-light: rgba(255, 255, 255, 0.3);
+  --bg-secondary: hsl(208, 45%, 87%);
+  --bg-danger: rgba(187, 146, 139, 0.6);
+  --bg-success: rgb(133, 168, 148, 0.6);
+
+  /* 主题色 */
+  --theme-dark: #438cd6;
+  --theme: #8ab8e7;
+  --theme-light: #cadff2;
+  /* 文本色 */
+  --text: hsl(240 100% 11%);
+  --text-muted: hsl(216 67% 32%);
+  --text-light: hsl(216 67% 82%);
+  /* 边框色 */
+  --border: hsl(217 51% 55%);
+  --border-muted: hsl(217 73% 68%);
+  /* 其他 */
+  --danger: hsl(9 26% 64%);
+  --warning: hsl(52 19% 57%);
+  --success: hsl(146 17% 59%);
+  --info: hsl(217 28% 65%);
+}
+
+.kzgj-extension-manager-app,
+.kzgj-extension-manager-app * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-shadow: none;
+}
+
+/*清除无名杀div默认样式*/
+.kzgj-extension-manager-app,
+.kzgj-extension-manager-app div,
+.kzgj-div-style,
+.kzgj-div-style div {
+  display: block;
+  position: static;
+  transition: none;
+  text-shadow: none;
+}
+
+.kzgj-extension-manager-app button,
+.kzgj-extension-manager-app input,
+.kzgj-extension-manager-app select,
+.kzgj-extension-manager-app option,
+.kzgj-extension-manager-app textarea {
+  border: none;
+  padding: 0;
+  outline: none;
+  background: transparent;
+}
+
+.kzgj-extension-manager-app button {
+  cursor: pointer;
+}
+
+.kzgj-extension-manager-app ::-webkit-scrollbar {
+  display: none;
+}

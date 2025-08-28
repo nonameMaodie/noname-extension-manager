@@ -1,0 +1,115 @@
+<script setup>
+import {
+  defineProps,
+  defineModel,
+  toRefs,
+  nextTick,
+  ref,
+  watch,
+  defineEmits,
+} from '../../external/vue.js'
+import { autoZoom } from '../../utils/autoZoom.js'
+import { lib } from '../../external/noname.js'
+
+const props = defineProps({
+  title: { type: String },
+  content: { type: String },
+  cancel: { type: String },
+  confirm: { type: String },
+})
+const { title, content, cancel, confirm } = toRefs(props)
+
+const showModal = defineModel()
+
+const modal = ref(null)
+let telShow = ref(false)
+let release = null
+watch(showModal, async (visible) => {
+  if (visible) {
+    telShow.value = true
+    await nextTick()
+    release = autoZoom(modal.value, {
+      width: 1100,
+      height: 750,
+    })
+  } else {
+    release?.()
+  }
+})
+
+const emit = defineEmits(['cancel', 'confirm'])
+function onCancel() {
+  showModal.value = false
+  emit('cancel', false)
+}
+function onConfirm() {
+  showModal.value = false
+  emit('confirm', true)
+}
+</script>
+
+<template>
+  <Teleport to=".kzgj-extension-manager-app" v-if="telShow">
+    <Transition name="slide-fade" appear>
+      <div class="modal" ref="modal" v-if="showModal" :class="{ 'center-show': lib.node }">
+        <div class="modal-content" v-if="title && content && cancel && confirm">
+          <div class="modal-title" v-if="title">{{ title }}</div>
+          <div class="modal-body" v-if="content">{{ content }}</div>
+          <div class="modal-footer" v-if="cancel || confirm">
+            <button class="close-button" v-if="cancel" @click="onCancel">
+              {{ cancel }}
+            </button>
+            <button class="confirm-button" v-if="confirm" @click="onConfirm">
+              {{ confirm }}
+            </button>
+          </div>
+        </div>
+        <slot></slot>
+      </div>
+    </Transition>
+  </Teleport>
+</template>
+
+<style scoped>
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal.center-show{
+  align-items: center;
+}
+.modal-content {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+}
+/* 添加过渡动画样式 */
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from {
+  /* transform: scale(0.6); */
+  opacity: 0;
+}
+
+.slide-fade-leave-to {
+  /* transform: scale(0.6); */
+  opacity: 0;
+}
+</style>
