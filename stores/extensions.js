@@ -2,6 +2,7 @@ import { defineStore } from '../external/pinia.js'
 import { computed, ref } from '../external/vue.js'
 import { lib, game, ui } from '../external/noname.js'
 import { extensionList, classes } from './libExtensions.js'
+import { showModal } from '../api/modal.js'
 
 export const useExtensionsStore = defineStore('extensions', () => {
 	// 扩展管理页，当前下拉菜单已选中的分类列表，对应文本
@@ -69,6 +70,7 @@ export const useExtensionsStore = defineStore('extensions', () => {
 			left: 0;
 			width: 100%;
 			height: 100%;
+			backdrop-filter: blur(4px);
 			background-color: transparent;
 			z-index: 10;
 		`
@@ -98,9 +100,16 @@ export const useExtensionsStore = defineStore('extensions', () => {
 	}
 
 	// 卸载扩展
-	function uninstallExtension(ext) {
-		game.removeExtension(ext.name, true)
-		extensionList.value = extensionList.value.filter((e) => e.name !== ext.name)
+	async function uninstallExtension(ext) {
+		const result = await showModal({
+			title: "注意",
+			content: `确定要卸载《${ext.name}》吗？`,
+			cancel: '取消'
+		})
+		if (result) {
+			game.removeExtension(ext.name, true)
+			extensionList.value = extensionList.value.filter((e) => e.name !== ext.name)
+		}
 	}
 
 	// 扩展隐藏切换
@@ -108,9 +117,10 @@ export const useExtensionsStore = defineStore('extensions', () => {
 		ext.hide = !ext.hide
 		if (ext.hide) {
 			if (ext.name == '扩展管家') {
-				game.alert(
-					"隐藏《扩展管家》后，如您需要令其重新显示，请在控制台执行：game.saveConfig\n('hiddenPlayPack',[])",
-				)
+				showModal({
+					title: "注意",
+					content: "隐藏《扩展管家》后，如您需要令其重新显示，请在控制台执行：game.saveConfig\n('hiddenPlayPack',[])",
+				})
 			}
 			lib.config.hiddenPlayPack.add(`extension_${ext.name}`)
 		} else {

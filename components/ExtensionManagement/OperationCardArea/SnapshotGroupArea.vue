@@ -1,20 +1,14 @@
 <script setup>
 import { ref, watchEffect, onMounted } from '../../../external/vue.js'
-import OperationCardArea from './OperationCardArea.vue'
-import Modal from '../../common/Modal.vue'
-import CustomInputForm from '../../common/CustomInputForm.vue'
 import { getTempId } from '../../../utils/getTempId.js'
 import { useSnapshotsStore } from '../../../stores/snapshots.js'
+import { showModal } from '../../../api/modal.js'
+import OperationCardArea from './OperationCardArea.vue'
+import CustomInputForm from '../../common/CustomInputForm.vue'
 import ShowMore from '../../common/ShowMore.vue'
 
 const snapshotsStore = useSnapshotsStore()
-const showModal = ref(false)
 const showMore = ref(false)
-const name = ref(getTempId())
-
-watchEffect(() => {
-	if (showModal.value) name.value = getTempId()
-})
 
 onMounted(async ()=>{
 	await snapshotsStore.readAllSnapshots()
@@ -32,13 +26,23 @@ function toggleActive(name) {
 watchEffect(() => {
 	if (!showMore.value) toggleActive(null)
 })
+
+async function saveSnapshot() {
+	const result = await showModal(null, CustomInputForm, {
+		title: '快照名称',
+		value: getTempId()
+	})
+	if(result && result.trim()){
+		snapshotsStore.trySaveSnapshot(result)
+	}
+}
 </script>
 
 <template>
   <OperationCardArea name="快照：">
-    <button type="button" class="save-snapshot" @click="showModal = true">保存快照</button>
+    <button type="button" class="save-snapshot" @click="saveSnapshot">保存快照</button>
     <button type="button" class="restore-snapshot" @click="showMore = true">恢复快照</button>
-    <ShowMore v-model="showMore">
+    <ShowMore v-model="showMore" :limit="-100">
       <div class="show-more-content">
         <div class="show-more-title">(单击预览，双击删除)</div>
         <div class="snapshot-item" v-for="item in snapshotsStore.snapshots" :key="item.id">
@@ -53,14 +57,6 @@ watchEffect(() => {
       </div>
     </ShowMore>
   </OperationCardArea>
-  <Modal v-model="showModal">
-    <CustomInputForm
-      v-model="name"
-      title="快照名称"
-      v-model:show="showModal"
-      @confirm="snapshotsStore.trySaveSnapshot(name)"
-    />
-  </Modal>
 </template>
 
 <style scoped>
@@ -88,7 +84,7 @@ watchEffect(() => {
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  color: #555;
+  color: var(--text-muted);
 }
 .show-more-content {
   display: flex;

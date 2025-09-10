@@ -2,8 +2,8 @@
 import CLassSelectBar from './OperationCardArea/CLassSelectBar.vue'
 import SearchBarArea from './OperationCardArea/SearchBarArea.vue'
 import SnapshotGroupArea from './OperationCardArea/SnapshotGroupArea.vue'
-import OperationCardArea from './OperationCardArea/OperationCardArea.vue'
 import OperatedHistoryArea from './OperationCardArea/OperatedHistoryArea.vue'
+import ThemeArea from './OperationCardArea/ThemeArea.vue'
 import { game } from '../../external/noname.js'
 </script>
 
@@ -13,9 +13,7 @@ import { game } from '../../external/noname.js'
     <CLassSelectBar />
     <SnapshotGroupArea />
     <OperatedHistoryArea />
-    <OperationCardArea name="待定："
-      ><span style="color: var(--text-muted)">（功能待完善）</span>
-    </OperationCardArea>
+    <ThemeArea />
     <button class="reload-game" @click="game.reload()">重启游戏</button>
   </form>
 </template>

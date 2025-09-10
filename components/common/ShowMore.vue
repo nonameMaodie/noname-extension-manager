@@ -6,7 +6,7 @@ const moreRef = ref(null)
 const isTop = ref(false)
 const { limit } = defineProps({
   limit: {
-    // 设置触发位置， 0 ~ 1 之间，数字越大，靠近屏幕上边视口的浮窗越倾向于在上方出现
+    // 设置触发位置，一般 0 ~ 1 之间，数字越大，靠近屏幕上边视口的浮窗越倾向于在上方出现
     type: Number,
     default: 0.3,
   },

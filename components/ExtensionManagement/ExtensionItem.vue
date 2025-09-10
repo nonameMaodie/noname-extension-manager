@@ -85,7 +85,7 @@ function uninstallExtension(ext) {
   gap: 8px;
 }
 .ext-item-actions button {
-  border: 1.7px solid var(--info);
+  border: 1px solid var(--info);
   padding: 4px 8px;
   /* border: none; */
   border-radius: 4px;
@@ -93,15 +93,16 @@ function uninstallExtension(ext) {
 }
 .ext-item-actions button:hover {
   background: var(--info);
+  color: var(--text-light);
 }
 .ext-item-actions button.danger {
-  border: 1.7px solid var(--danger);
+  border: 1px solid var(--danger);
 }
 .ext-item-actions button.danger:hover {
   background: var(--danger);
 }
 .ext-item-actions button.success {
-  border: 1.7px solid var(--success);
+  border: 1px solid var(--success);
 }
 .ext-item-actions button.success:hover {
   background: var(--success);

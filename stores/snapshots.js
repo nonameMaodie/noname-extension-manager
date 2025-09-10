@@ -6,7 +6,6 @@ import { basic } from '../source/basic.js'
 import { emitter } from '../utils/emitter.js'
 import { useToast } from '../api/toast.js'
 
-
 export const useSnapshotsStore = defineStore('snapshot', () => {
 	const toast = useToast()
 	async function readSnapshot(fileName) {
@@ -63,10 +62,12 @@ export const useSnapshotsStore = defineStore('snapshot', () => {
 			const snapshot = createSnapshot(name)
 			await writeSnapshot(snapshot)
 			snapshots.value.unshift(snapshot)
+			toast.success('快照保存成功')
 			return true
 		}
 		catch (error) {
 			console.error(error)
+			toast.error('保存失败，请查看控制台日志')
 			return false
 		}
 	}
@@ -77,10 +78,12 @@ export const useSnapshotsStore = defineStore('snapshot', () => {
 			if (index !== -1) {
 				await deleteSnapshot(name + '.json')
 				snapshots.value.splice(index, 1)
+				toast.success('快照删除成功')
 				return true
 			}
 		} catch (error) {
 			console.error(error)
+			toast.error('删除失败，请查看控制台日志')
 			return false
 		}
 	}

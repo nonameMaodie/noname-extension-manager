@@ -1,13 +1,15 @@
 <script setup>
 import { autoZoom } from '../utils/autoZoom.js'
-import { onMounted, onUnmounted, ref, computed, nextTick, h } from '../external/vue.js'
+import { onMounted, onUnmounted, ref, computed, nextTick } from '../external/vue.js'
 import MangerHeader from './MangerHeader.vue'
 import ExtensionManagement from './ExtensionManagement/ExtensionManagement.vue'
 import ClassManagement from './ClassManagement/ClassManagement.vue'
+import GameDataManagement from './GameDataManagement/GameDataManagement.vue'
 
 const pageMap = {
   扩展管理: ExtensionManagement,
   分类管理: ClassManagement,
+  游戏设置: GameDataManagement,
 }
 
 const pages = Object.keys(pageMap)
@@ -52,7 +54,7 @@ onUnmounted(() => {
 .inner {
   background: var(--bg-dark);
   border-radius: 15px;
-  border-top: 1.8px solid rgba(255, 255, 255, 0.7);
+  border-top: 1.8px solid var(--border-highlight);
   box-shadow:
     0px 2px 2px rgb(0 0 0 / 20%),
     0px 4px 4px #0000001a;

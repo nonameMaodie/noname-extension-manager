@@ -64,15 +64,17 @@ div.list-name {
   font-size: 14px;
 }
 .batch-btn[data-type='openAll'] {
-  border: 1.7px solid var(--success);
+  border: 1px solid var(--success);
 }
 .batch-btn:hover[data-type='openAll'] {
+  color: var(--text-light);
   background: var(--success);
 }
 .batch-btn[data-type='closeAll'] {
-  border: 1.7px solid var(--danger);
+  border: 1px solid var(--danger);
 }
 .batch-btn:hover[data-type='closeAll'] {
+  color: var(--text-light);
   background: var(--danger);
 }
 ul.list-items {

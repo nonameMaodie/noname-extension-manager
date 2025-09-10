@@ -1,35 +1,93 @@
 <script setup>
-import { defineProps, ref, watch } from '../../external/vue.js'
+import { defineProps, ref, watch, onMounted, onUnmounted } from '../../external/vue.js'
 import ExtensionItem from './ExtensionItem.vue'
-import { useDraggable } from '../../external/vue-draggable-plus.js'
+import { useDraggable } from '../../external/vue-draggable-plus.js' 
 import { useExtensionsClassesStore } from '../../stores/extensionsClasses.js'
 import { useExtensionsStore } from '../../stores/extensions.js'
+import { lib } from '../../external/noname.js'
 
 const store = useExtensionsClassesStore()
 const extsStore = useExtensionsStore()
+
+const el = ref(null)
+const itemDraggable = ref(false)
+const noAnimations = ref(false)
+const introText = ref('点击交换右边的扩展卡片排序')
 const props = defineProps({
   title: String,
   extensions: { type: Array, default: () => [] },
 })
-const el = ref(null)
-const draggable = useDraggable(el, props.extensions, {
-  onUpdate() {
-    extsStore.updateExtensionSort()
-  },
-})
-const itemDraggable = ref(store.currentClass.id === 0)
-watch(
-  () => store.currentClass,
-  (val) => {
-    if (val.id === 0) {
-      draggable?.start?.()
-      itemDraggable.value = true
-    } else {
-      draggable?.pause?.()
-      itemDraggable.value = false
+
+// 以下是排序相关
+let swapItem = () =>{}
+if(lib.node){
+  itemDraggable.value = store.currentClass.id === 0
+  noAnimations.value = itemDraggable.value
+  introText.value = '拖拽右边的扩展卡片排序'
+  const draggable = useDraggable(el, props.extensions, {
+    onUpdate() {
+      extsStore.updateExtensionSort()
+    },
+    animation: 200,
+    ghostClass: 'draggable-ghost',
+    chosenClass: 'draggable-chosen',
+    dragClass: 'draggable-drag',
+    direction: 'vertical',
+  })
+
+  // 动态设置是否可拖拽
+  watch(
+    () => store.currentClass,
+    (val) => {
+      if (val.id === 0) {
+        draggable?.start?.()
+        itemDraggable.value = true
+        setTimeout(() => {
+          noAnimations.value = true
+        }, 200)   
+      } else {
+        draggable?.pause?.()
+        itemDraggable.value = false
+        noAnimations.value = false
+      }
+    })
+} else {
+  let firstClick = null
+  swapItem = (ext, e) => {
+    if(store.currentClass.id !== 0) return
+    const extEl = e.target.closest('ul.list-items > li')
+    if(!firstClick){
+      firstClick = [ext, extEl]
+      extEl.classList.add('draggable-chosen')
+      return
     }
-  },
-)
+    if(firstClick[1] === extEl){
+      firstClick[1].classList.remove('draggable-chosen')
+      firstClick = null
+      return
+    }
+    firstClick[1].classList.remove('draggable-chosen')
+    let valList = props.extensions
+    const index1 = valList.indexOf(firstClick[0]);
+    const index2 = valList.indexOf(ext);
+    [valList[index1],valList[index2]] = [valList[index2],valList[index1]];
+    extsStore.updateExtensionSort()
+    firstClick = null
+  }
+  // 点击外部处取消选中
+  const clickItemOutside = (e) => {
+    if(!firstClick || e.target.closest('ul.list-items > li')) return
+    firstClick[1].classList.remove('draggable-chosen')
+    firstClick = null
+  }
+  onMounted(() => {
+    document.addEventListener('click', clickItemOutside)
+  })
+  onUnmounted(() => {
+    document.removeEventListener('click', clickItemOutside)
+  })
+}
+
 </script>
 
 <template>
@@ -40,16 +98,17 @@ watch(
     <ul
       v-if="store.currentClass.id === 0 && !extensions.length"
       class="list-items"
-      style="display: flex; justify-content: center; align-items: center; font-size: 22px"
+      style="position: absolute; width: 100%; display: flex; justify-content: center; align-items: center; font-size: 22px"
     >
-      拖拽右边的扩展卡片排序
+      "{{ introText }}"
     </ul>
-    <TransitionGroup name="list" tag="ul" class="list-items" ref="el">
+    <TransitionGroup name="list" tag="ul" class="list-items" :class="{ 'no-animation': noAnimations }" ref="el">
       <ExtensionItem
         v-for="ext in extensions"
         :key="ext.id"
         :extension="ext"
         @toggle="$emit('toggle', ext)"
+        @click="swapItem(ext, $event)"
         :class="{ 'list-item-draggable': itemDraggable }"
       />
     </TransitionGroup>
@@ -58,6 +117,7 @@ watch(
 
 <style scoped>
 div.ext-list {
+  position: relative;
   flex: 1;
   background: var(--bg);
   border-radius: 8px;
@@ -118,5 +178,18 @@ ul.list-items {
 }
 .list-items li.list-item-draggable {
   cursor: move;
+}
+
+.draggable-chosen {
+  background: var(--theme);
+}
+.draggable-drag {
+  opacity: 1;
+}
+
+.no-animation .list-enter-active,
+.no-animation .list-leave-active,
+.no-animation .list-move{
+  transition: none !important;
 }
 </style>

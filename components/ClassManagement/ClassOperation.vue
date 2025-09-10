@@ -1,31 +1,29 @@
 <script setup>
 import IconEdit from '../icons/IconEdit.vue'
 import IconDelete from '../icons/IconDelete.vue'
+import CustomInputForm from '../common/CustomInputForm.vue'
 import { useExtensionsClassesStore } from '../../stores/extensionsClasses.js'
 import { storeToRefs } from '../../external/pinia.js'
-import Modal from '../common/Modal.vue'
-import CustomInputForm from '../common/CustomInputForm.vue'
-import { ref } from '../../external/vue.js'
+import { showModal } from '../../api/modal.js'
 
 const store = useExtensionsClassesStore()
 const { classes, currentClass } = storeToRefs(store)
-const showModal = ref(false)
-const name = ref('')
-function addClass() {
-  const value = name.value.trim()
-  if (!value) return
-  store.addNewExtensionClass(value)
-  name.value = ''
+
+async function addNewClass() {
+  const result = await showModal(null, CustomInputForm, {title: '分类名称'})
+  if(result && result.trim()){
+	store.addNewExtensionClass(result)
+  }
 }
-
-const showEditModal = ref(false)
-const editedName = ref('')
-const editedClass = ref('')
-
-function editClassName() {
-  const value = editedName.value.trim()
-  if (!value) return
-  store.renameExtensionClass(editedClass.value, editedName.value)
+async function editClassName(item) {
+  const result = await showModal(null, CustomInputForm, {
+	title: '更改分类名',
+	placeholder: "请输入新的分类名",
+	value: item.name
+  })
+  if(result && result.trim()){
+	store.renameExtensionClass(item, result)
+  }
 }
 </script>
 
@@ -45,13 +43,7 @@ function editClassName() {
           <button>
             <IconEdit
               class="icon-edit"
-              @click="
-                () => {
-                  editedName = item.name
-                  editedClass = item
-                  showEditModal = true
-                }
-              "
+              @click="editClassName(item)"
             />
           </button>
           <button>
@@ -60,26 +52,9 @@ function editClassName() {
         </div>
       </div>
     </div>
-    <div class="operation-card" @click="showModal = true" v-if="classes.length < 9">
+    <div class="operation-card" @click="addNewClass" v-if="classes.length < 9">
       <div class="add-new-item operation-card-content">+</div>
     </div>
-    <Modal v-model="showModal">
-      <CustomInputForm
-        v-model="name"
-        title="分类名称"
-        v-model:show="showModal"
-        @confirm="addClass"
-      />
-    </Modal>
-    <Modal v-model="showEditModal">
-      <CustomInputForm
-        v-model="editedName"
-        title="更改分类名"
-        placeholder="请输入新的分类名"
-        v-model:show="showEditModal"
-        @confirm="editClassName"
-      />
-    </Modal>
   </form>
 </template>
 

@@ -4,6 +4,7 @@ import { precontent } from './source/precontent.js'
 import { config } from './source/config.js'
 import { help } from './source/help.js'
 import { basic } from './source/basic.js'
+import './api/draggableEl.js'
 
 export let type = 'extension';
 
@@ -19,7 +20,7 @@ export default async function () {
 		package: {},
 		files: { "character": [], "card": [], "skill": [], "audio": [] }
 	};
-	extensionInfo.intro += `<br><br>关注《无名杀扩展交流》公众号，获取更多扩展信息。<img style='width:238px' src='${basic.extensionDirectoryPath}image/gzh.jpg'/>`;
+	extensionInfo.intro += `<br><br>版本：${extensionInfo.version}`;
 	Object.keys(extensionInfo)
 		.filter(key => key != 'name')
 		.forEach(key => extension.package[key] = extensionInfo[key]);

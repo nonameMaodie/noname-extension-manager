@@ -10,14 +10,14 @@ function init() {
 	inited = true
 	const app = createApp(Toaster, {
 		position: "top-center",
-		reverseOrder: true
+		reverseOrder: true,
+		class: 'kzgj-div-style'
 	});
 	const ToasterInstance = app.mount(document.createElement('div'))
 	autoZoom(ToasterInstance.$el, {
 		width: 1100,
 		height: 750,
 	})
-	ToasterInstance.$el.classList.add('kzgj-div-style')
 	ToasterInstance.$el.style.zoom = 1 / game.documentZoom
 	ui.window.appendChild(ToasterInstance.$el)
 }

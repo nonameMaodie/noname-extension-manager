@@ -15,10 +15,10 @@ const props = defineProps({
   title: { type: String },
   content: { type: String },
   cancel: { type: String },
-  confirm: { type: String },
+  confirm: { type: String , default: '确定'},
 })
-const { title, content, cancel, confirm } = toRefs(props)
 
+const { title, content, cancel, confirm } = toRefs(props)
 const showModal = defineModel()
 
 const modal = ref(null)
@@ -49,10 +49,10 @@ function onConfirm() {
 </script>
 
 <template>
-  <Teleport to=".kzgj-extension-manager-app" v-if="telShow">
+  <Teleport to="#window" v-if="telShow">
     <Transition name="slide-fade" appear>
-      <div class="modal" ref="modal" v-if="showModal" :class="{ 'center-show': lib.node }">
-        <div class="modal-content" v-if="title && content && cancel && confirm">
+      <div class="kzgj-modal kzgj-div-style" ref="modal" v-if="showModal" :class="{ 'center-show': lib.node }">
+        <div class="modal-content" v-if="title && content && confirm">
           <div class="modal-title" v-if="title">{{ title }}</div>
           <div class="modal-body" v-if="content">{{ content }}</div>
           <div class="modal-footer" v-if="cancel || confirm">
@@ -71,7 +71,7 @@ function onConfirm() {
 </template>
 
 <style scoped>
-.modal {
+.kzgj-modal {
   position: absolute;
   top: 0;
   left: 0;
@@ -83,16 +83,47 @@ function onConfirm() {
   z-index: 1000;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.modal.center-show{
+.kzgj-modal.center-show{
   align-items: center;
 }
 .modal-content {
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  max-width: 80%;
-  max-height: 80%;
-  overflow-y: auto;
+  background: var(--bg-secondary);
+  border-radius: 15px;
+  border: 3px solid var(--border);
+  padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  gap: 1.3em;
+  color: var(--text);
+}
+.modal-content>.modal-title {
+  font-size: 26px;
+  font-weight: 700;
+}
+.modal-content>.modal-body {
+  font-size: 20px;
+  font-weight: 500;
+}
+.modal-content>.modal-footer {
+  display: flex;
+  gap: 1em;
+  justify-content: flex-end;
+}
+.modal-footer>.close-button,
+.modal-footer>.confirm-button{
+  background: var(--info);
+  /* filter: saturate(2); */
+  color: var(--text-light);
+  border: none;
+  border-radius: 8px;
+  padding: 0.4em 1.2em;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.modal-footer>.close-button{
+  background: var(--danger);
 }
 /* 添加过渡动画样式 */
 .slide-fade-enter-active {

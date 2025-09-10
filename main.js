@@ -1,6 +1,7 @@
 import { createApp } from './external/vue.js'
 import { createPinia } from './external/pinia.js'
 import { lib, ui, game } from './external/noname.js'
+import { showModal } from './api/modal.js'
 import App from './App.vue'
 
 let temp = null
@@ -31,7 +32,10 @@ export function openApp() {
 		if (document.querySelector('#window>.kzgj-extension-manager-app')) return
 
 		if (!lib.config.kzgj_mentioned) {
-			game.alert("此面板的设置均有在重启后才能生效。");
+			showModal({
+				title: "提示",
+				content: "此面板的设置均有在重启后才能生效。",
+			})
 			game.saveConfig('kzgj_mentioned', true);
 		}
 		handleOnOpenApp()

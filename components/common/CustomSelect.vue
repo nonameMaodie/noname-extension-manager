@@ -100,7 +100,7 @@ const selectedLabel = computed(() => {
 
 .custom-select .select-content > div > span.is-selected {
   background: var(--theme-dark);
-  color: #fff;
+  color: var(--text-light);
 }
 .custom-select .select-content > div:hover > span.is-selected {
   background: var(--bg-secondary);
@@ -109,7 +109,7 @@ const selectedLabel = computed(() => {
 .custom-select .select-content > div > span:hover,
 .custom-select .select-content > div:hover > span.is-selected:hover {
   background: var(--theme-dark);
-  color: #fff;
+  color: var(--text-light);
 }
 .custom-select.active .select-trigger-arrow {
   transform: rotate(-180deg);
