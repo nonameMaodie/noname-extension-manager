@@ -107,8 +107,15 @@ export const useExtensionsStore = defineStore('extensions', () => {
 			cancel: '取消'
 		})
 		if (result) {
-			game.removeExtension(ext.name, true)
-			extensionList.value = extensionList.value.filter((e) => e.name !== ext.name)
+			try {
+				// 优先模拟点击“删除此扩展”按钮
+				const div = ui.create.div('', '<span>确认删除</span>', ui.create.div(ui.create.div()))
+				lib.extensionMenu[`extension_${ext.name}`].delete.onclick.call(div);
+			} catch {
+				if (lib.config.extensions.includes(ext.name)) game.removeExtension(ext.name)
+			} finally {
+				extensionList.value = extensionList.value.filter((e) => e.name !== ext.name)
+			}
 		}
 	}
 

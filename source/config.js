@@ -9,7 +9,7 @@ export const config = {
 		nopointer: true,
 	},
 	gzh: {
-		name: '《无名杀扩展交流》公众号',
+		name: '公众号',
 		init: '1',
 		item: {
 			'1': '点击查看',
