@@ -13,6 +13,7 @@ export default async function () {
 		await lib.init.promises.json(`${basic.extensionDirectoryPath}info.json`);
 	let extension = {
 		name: extensionInfo.name,
+		editable: false,
 		content,
 		precontent,
 		config: await basic.resolve(config),

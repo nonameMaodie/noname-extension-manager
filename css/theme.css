@@ -5,8 +5,8 @@
   --bg: rgba(255, 255, 255, 0.2);
   --bg-light: rgba(255, 255, 255, 0.3);
   --bg-secondary: hsl(208, 45%, 87%);
-  --bg-danger: rgba(187, 146, 139, 0.6);
-  --bg-success: rgb(133, 168, 148, 0.6);
+  --bg-danger: hsl(8, 21%, 71%);
+  --bg-success: hsl(147 19% 66%);
   /* 主题色 */
   --theme-dark: #438cd6;
   --theme: #8ab8e7;
@@ -20,10 +20,6 @@
   --border-muted: hsl(217 73% 68%);
   --border-highlight: rgba(255, 255, 255, 0.7);
   /* 其他 */
-  /* --danger: hsl(9 26% 64%);
-  --warning: hsl(52 19% 57%);
-  --success: hsl(146 17% 59%);
-  --info: hsl(217 28% 65%); */
   --danger: hsl(9 21% 41%);
   --warning: hsl(52 23% 34%);
   --success: hsl(147 19% 36%);
@@ -37,8 +33,8 @@
   --bg: hsl(222 55% 5%);
   --bg-light: hsl(220 35% 10%);
   --bg-secondary: hsl(220 35% 10%);
-  --bg-danger: rgb(188, 147, 140);
-  --bg-success: rgb(132, 168, 148);
+  --bg-danger: hsl(9, 26%, 34%);
+  --bg-success: hsl(147, 17%, 29%);
   /* 主题色 */
   --theme-dark: rgb(145 177 241);
   --theme: hsl(220deg 25% 45%);

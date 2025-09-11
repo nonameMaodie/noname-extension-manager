@@ -1,6 +1,7 @@
 import { lib, game, ui, get, ai, _status } from '../../../noname.js'
 import { openApp } from '../main.js'
 import { basic } from './basic.js'
+import { useToast } from '../api/toast.js'
 
 export const config = {
 	compatibility: {
@@ -54,5 +55,18 @@ export const config = {
 			game.closeMenu()
 			openApp()
 		},
-	}
+	},
+
+	//来自十周年UI author:点点
+	showCiallo: {
+		name: '<b><font color="#00FF66">𝑪𝒊𝒂𝒍𝒍𝒐～(∠・ω< )⌒★',
+		intro: "",
+		init: true,
+		clear: true,
+		onclick: function () {
+			game.playAudio("..", "extension", "扩展管家/audio", "Ciallo");
+			const toast = useToast();
+			toast("Ciallo~(∠・ω< )⌒★");
+		},
+	},
 }

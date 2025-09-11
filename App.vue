@@ -24,7 +24,7 @@ onMounted(async ()=>{
 	observer = new MutationObserver(mutations => {
 		mutations.forEach(mutation => {
 			if (mutation.type === 'attributes' && mutation.attributeName === 'style' && mutation.target === ui.background) {
-				el.value.style.backgroundImage = window.getComputedStyle(ui.background).backgroundImage;
+				el.style.backgroundImage = window.getComputedStyle(ui.background).backgroundImage;
 			}
 		});
 	});

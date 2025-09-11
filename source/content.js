@@ -3,7 +3,6 @@ import { openApp } from '../main.js'
 
 export async function content(config, pack) {
 	//在这里编写启动阶段执行的代码。
-	;
 
 	lib.arenaReady.push(() => {
 		const theme = game.getExtensionConfig('扩展管家', 'theme')
