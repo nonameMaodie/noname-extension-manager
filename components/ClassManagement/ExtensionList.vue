@@ -4,7 +4,7 @@ import ExtensionItem from './ExtensionItem.vue'
 import { useDraggable } from '../../external/vue-draggable-plus.js' 
 import { useExtensionsClassesStore } from '../../stores/extensionsClasses.js'
 import { useExtensionsStore } from '../../stores/extensions.js'
-import { lib } from '../../external/noname.js'
+import { getDevice } from '../../utils/getDevice.js'
 
 const store = useExtensionsClassesStore()
 const extsStore = useExtensionsStore()
@@ -20,7 +20,7 @@ const props = defineProps({
 
 // 以下是排序相关
 let swapItem = () =>{}
-if(lib.node){
+if(getDevice() !== 'mobile'){
   itemDraggable.value = store.currentClass.id === 0
   noAnimations.value = itemDraggable.value
   introText.value = '拖拽右边的扩展卡片排序'

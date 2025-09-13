@@ -9,7 +9,7 @@ import {
   defineEmits,
 } from '../../external/vue.js'
 import { autoZoom } from '../../utils/autoZoom.js'
-import { lib } from '../../external/noname.js'
+import { getDevice } from '../../utils/getDevice.js'
 
 const props = defineProps({
   title: { type: String },
@@ -51,7 +51,7 @@ function onConfirm() {
 <template>
   <Teleport to="#window" v-if="telShow">
     <Transition name="slide-fade" appear>
-      <div class="kzgj-modal kzgj-div-style" ref="modal" v-if="showModal" :class="{ 'center-show': lib.node }">
+      <div class="kzgj-modal kzgj-div-style" ref="modal" v-if="showModal" :class="{ 'center-show': getDevice() !== 'mobile' }">
         <div class="modal-content" v-if="title && content && confirm">
           <div class="modal-title" v-if="title">{{ title }}</div>
           <div class="modal-body" v-if="content">{{ content }}</div>

@@ -28,8 +28,8 @@
 	.draggable-el{
 		position: absolute; 
 		transform: translateY(100%);
-		width: 40px; 
-		height: 40px;
+		width: 44px;
+		height: 44px;
 		z-index: 9;
 		border-radius: 50%;
 		cursor: pointer;

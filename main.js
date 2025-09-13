@@ -26,7 +26,6 @@ function handleOnCloseApp() {
 	window.onkeydown = temp
 }
 
-
 export function openApp() {
 	setTimeout(() => {
 		if (document.querySelector('#window>.kzgj-extension-manager-app')) return
@@ -52,4 +51,3 @@ export function openApp() {
 		ui.window.appendChild(vm.$el)
 	}, 0)
 }
-

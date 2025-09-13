@@ -4,7 +4,6 @@ import { precontent } from './source/precontent.js'
 import { config } from './source/config.js'
 import { help } from './source/help.js'
 import { basic } from './source/basic.js'
-import './api/draggableEl.js'
 
 export let type = 'extension';
 

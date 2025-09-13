@@ -1,5 +1,5 @@
 // 基于https://github.com/sunzsh/vue-el-demo/blob/master/src/main.js的拖拽代码改造
-import { game } from '../external/noname.js'
+import { game, lib } from '../external/noname.js'
 
 function getZoomLevel() {
 	return game.documentZoom || 1;
@@ -24,10 +24,10 @@ export function initDrag(el, options = {}) {
 		oDiv.style.position = 'absolute';
 	}
 
-	// 判断是否为移动端
-	const isMobile = !lib.node;
+	// 判断是否为触屏模式
+	const isTouchscreen = lib.config.touchscreen;
 
-	if (isMobile) {
+	if (isTouchscreen) {
 		oDiv.addEventListener('touchstart', dragStart);
 	} else {
 		oDiv.addEventListener('mousedown', dragStart);
@@ -58,7 +58,7 @@ export function initDrag(el, options = {}) {
 
 		// 计算触摸点与元素左上角的偏移（考虑缩放）
 		let disX, disY;
-		if (isMobile) {
+		if (isTouchscreen) {
 			const touch = e.touches[0];
 			disX = (touch.clientX / zoomLevel) - target.offsetLeft;
 			disY = (touch.clientY / zoomLevel) - target.offsetTop;
@@ -69,7 +69,7 @@ export function initDrag(el, options = {}) {
 
 		onDragStart(target, { x: initX, y: initY });
 
-		if (isMobile) {
+		if (isTouchscreen) {
 			document.addEventListener('touchmove', dragMove);
 			document.addEventListener('touchend', dragEnd);
 		} else {
@@ -79,7 +79,7 @@ export function initDrag(el, options = {}) {
 
 		function dragMove(e) {
 			// 阻止页面滚动
-			if (isMobile) {
+			if (isTouchscreen) {
 				e.preventDefault();
 			}
 
@@ -88,7 +88,7 @@ export function initDrag(el, options = {}) {
 
 			// 计算新位置（考虑缩放）
 			let l, t;
-			if (isMobile) {
+			if (isTouchscreen) {
 				const touch = e.touches[0];
 				l = (touch.clientX / zoomLevel) - disX;
 				t = (touch.clientY / zoomLevel) - disY;
@@ -121,7 +121,7 @@ export function initDrag(el, options = {}) {
 		}
 
 		function dragEnd() {
-			if (isMobile) {
+			if (isTouchscreen) {
 				document.removeEventListener('touchmove', dragMove);
 				document.removeEventListener('touchend', dragEnd);
 			} else {
@@ -143,7 +143,7 @@ export function initDrag(el, options = {}) {
 
 	// 返回销毁函数
 	return () => {
-		if (isMobile) {
+		if (isTouchscreen) {
 			oDiv.removeEventListener('touchstart', dragStart);
 		} else {
 			oDiv.removeEventListener('mousedown', dragStart);

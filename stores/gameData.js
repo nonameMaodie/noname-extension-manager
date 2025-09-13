@@ -3,9 +3,10 @@ import { defineStore } from '../external/pinia.js'
 import { lib, game } from '../external/noname.js'
 import { basic } from '../source/basic.js'
 import { useToast } from '../api/toast.js'
+import { getDevice } from '../utils/getDevice.js'
 
 export const useGameDataStore = defineStore('gameData', () => {
-	const folderPath = lib.node ? `${basic.extensionDirectoryPath}/gameData` : `${basic.extensionDirectoryPath}/gameDataForMobile`;
+	const folderPath = getDevice() !== 'mobile' ? `${basic.extensionDirectoryPath}/gameData` : `${basic.extensionDirectoryPath}/gameDataForMobile`;
 	const toast = useToast()
 	const gameDataList = ref(Array.from({ length: 16 }, (_, i) => createInitialDataInfo(i + 1)));
 

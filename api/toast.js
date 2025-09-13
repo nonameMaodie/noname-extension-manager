@@ -1,6 +1,7 @@
 import toast, { Toaster } from '../external/vue3-hot-toast.js'
 import { createApp } from '../external/vue.js'
 import { lib, ui, game } from '../external/noname.js'
+import { autoZoom } from '../utils/autoZoom.js'
 
 let inited = false
 
@@ -13,10 +14,12 @@ function init() {
 		class: 'kzgj-div-style',
 		style: {
 			fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-			zoom: 1.2 / game.documentZoom
 		}
 	});
 	const ToasterInstance = app.mount(document.createElement('div'))
+	autoZoom(ToasterInstance.$el, {
+		width: 1440
+	})
 	ui.window.appendChild(ToasterInstance.$el)
 }
 

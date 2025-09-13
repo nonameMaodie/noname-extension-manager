@@ -5,15 +5,12 @@ import MangerHeader from './MangerHeader.vue'
 import ExtensionManagement from './ExtensionManagement/ExtensionManagement.vue'
 import ClassManagement from './ClassManagement/ClassManagement.vue'
 import GameDataManagement from './GameDataManagement/GameDataManagement.vue'
-import { getDevice } from '../utils/getDevice.js'
 
 const pageMap = {
   扩展管理: ExtensionManagement,
   分类管理: ClassManagement,
   游戏设置: GameDataManagement,
 }
-
-const isMobile = getDevice() === 'mobile'
 
 const pages = Object.keys(pageMap)
 const currentPage = ref('扩展管理')
@@ -24,8 +21,8 @@ let release = null
 onMounted(async () => {
   await nextTick()
   release = autoZoom(inner.value, {
-	width: isMobile ? 1000 : 1100,
-	height: isMobile ? 700 : 750,
+	width: 1100,
+	height: 750
   })
 })
 
@@ -36,7 +33,7 @@ onUnmounted(() => {
 
 <template>
   <div class="back">
-    <div class="inner" ref="inner" :class="{'is-mobile': isMobile}">
+    <div class="inner" ref="inner">
       <MangerHeader v-model="currentPage" :pages="pages" />
       <Transition name="fade" mode="out-in">
         <KeepAlive>
@@ -70,10 +67,6 @@ onUnmounted(() => {
   position: relative;
   overflow: hidden;
   color: var(--text);
-}
-.inner.is-mobile {
-  height: 665px;
-  width: 950px;
 }
 .page {
   flex: 1;

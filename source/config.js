@@ -66,7 +66,7 @@ export const config = {
 		onclick: function () {
 			game.playAudio("..", "extension", "扩展管家/audio", "Ciallo");
 			const toast = useToast();
-			toast("Ciallo~(∠・ω< )⌒★");
+			toast("Ciallo～(∠・ω＜)⌒★");
 		},
 	},
 }

@@ -2,12 +2,13 @@ import { lib, game } from '../external/noname.js'
 
 export function autoZoom(el, options) {
 	let { width, height } = options
+	if (!width && !height) throw new Error('autoZoom: width or height is required')
 
 	function init() {
-		const zoomX = window.innerWidth / width
-		const zoomY = window.innerHeight / height
+		const zoomX = width ? (window.innerWidth / width) : Infinity
+		const zoomY = height ? (window.innerHeight / height) : Infinity
 
-		el.style.zoom = 1 / game.documentZoom * Math.min(zoomX, zoomY)
+		el.style.zoom = Math.min(zoomX, zoomY) / game.documentZoom
 	}
 	init()
 
