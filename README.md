@@ -16,7 +16,7 @@
 
 >**前置条件**：https://github.com/libnoname/noname/wiki/%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E6%97%A0%E5%90%8D%E6%9D%80%EF%BC%88%E7%A8%8B%E5%BA%8F%E5%91%98%E7%89%88%EF%BC%89
 
-在你的无名杀项目extensions目录下执行以下命令
+在你的无名杀项目extension目录下执行以下命令
 ```bash
 # 克隆仓库并将原项目重命名为 “扩展管家”
 git clone https://gitee.com/ninemangos/noname-extension-manager.git 扩展管家
