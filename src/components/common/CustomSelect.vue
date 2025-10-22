@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, defineEmits, defineModel } from '../../external/vue.js'
+import { ref, computed, defineEmits, defineModel } from 'vue'
 import iconArrow from '../icons/iconArrow.vue'
 import vClickOutside from '../../utils/vClickOutside.js'
 

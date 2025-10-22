@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineEmits, computed } from '../../external/vue.js'
+import { defineProps, defineEmits, computed } from 'vue'
 import ExtensionItem from './ExtensionItem.vue'
 
 const props = defineProps({

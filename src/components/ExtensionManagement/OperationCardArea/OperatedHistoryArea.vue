@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from '../../../external/vue.js'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { extensionList } from '../../../stores/libExtensions.js'
 import { useExtensionsStore } from '../../../stores/extensions.js'
 import OperationCardArea from './OperationCardArea.vue'

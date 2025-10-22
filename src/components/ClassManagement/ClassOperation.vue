@@ -3,7 +3,7 @@ import IconEdit from '../icons/IconEdit.vue'
 import IconDelete from '../icons/IconDelete.vue'
 import CustomInputForm from '../common/CustomInputForm.vue'
 import { useExtensionsClassesStore } from '../../stores/extensionsClasses.js'
-import { storeToRefs } from '../../external/pinia.js'
+import { storeToRefs } from 'pinia'
 import { showModal } from '../../api/modal.js'
 
 const store = useExtensionsClassesStore()

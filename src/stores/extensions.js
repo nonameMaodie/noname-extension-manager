@@ -1,6 +1,6 @@
-import { defineStore } from '../external/pinia.js'
-import { computed, ref } from '../external/vue.js'
-import { lib, game, ui } from '../external/noname.js'
+import { defineStore } from 'pinia'
+import { computed, ref } from 'vue'
+import { lib, game, ui } from '@noname'
 import { extensionList, classes } from './libExtensions.js'
 import { showModal } from '../api/modal.js'
 

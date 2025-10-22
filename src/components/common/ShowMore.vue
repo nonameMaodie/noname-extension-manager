@@ -1,5 +1,5 @@
 <script setup>
-import { ref, nextTick, watch, defineModel, defineProps } from '../../external/vue.js'
+import { ref, nextTick, watch, defineModel, defineProps } from 'vue'
 import vClickOutside from '../../utils/vClickOutside.js'
 
 const moreRef = ref(null)

@@ -13,7 +13,7 @@ export default function autoRunBuildPlugin() {
       server.watcher.on('change', (file) => {
         const absoluteDir = projectRoot.replace(/\\/g, "/");
         const relativePath = file.replace(/\\/g, "/").replace(absoluteDir, "");
-        if (relativePath.startsWith("/src/") || ["/index.js", "/external.js"].includes(relativePath)) {
+        if (relativePath.startsWith("/src/") || ["/index.js"].includes(relativePath)) {
           exec("npm run build:dev", (error, stdout, stderr) => {
             if (error) {
               console.error("❌ 构建失败:", stderr);

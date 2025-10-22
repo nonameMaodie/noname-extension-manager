@@ -1,5 +1,5 @@
 // 基于https://github.com/sunzsh/vue-el-demo/blob/master/src/main.js的拖拽代码改造
-import { game, lib } from '../external/noname.js'
+import { game, lib } from '@noname'
 
 function getZoomLevel() {
 	return game.documentZoom || 1;

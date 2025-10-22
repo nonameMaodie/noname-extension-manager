@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineModel } from '../external/vue.js'
+import { defineProps, defineModel } from 'vue'
 
 const model = defineModel({ type: String, required: true }) // 接收一个字符串，作为当前页面的标题
 const { pages } = defineProps({

@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from '../../../external/vue.js'
+import { defineProps } from 'vue'
 defineProps({
   name: String,
 })

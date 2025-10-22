@@ -1,6 +1,6 @@
 <script setup>
 import { autoZoom } from '../utils/autoZoom.js'
-import { onMounted, onUnmounted, ref, computed, nextTick } from '../external/vue.js'
+import { onMounted, onUnmounted, ref, computed, nextTick } from 'vue'
 import MangerHeader from './MangerHeader.vue'
 import ExtensionManagement from './ExtensionManagement/ExtensionManagement.vue'
 import ClassManagement from './ClassManagement/ClassManagement.vue'

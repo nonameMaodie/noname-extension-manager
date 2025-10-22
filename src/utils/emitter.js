@@ -1,5 +1,5 @@
 // 引入mitt
-import mitt from '../external/mitt.js'
+import mitt from 'mitt'
 
 // 创建并暴露mitt
 export const emitter = mitt()

@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../../external.js'
+import { lib, game, ui, get, ai, _status } from '@noname'
 import { openApp } from '../main.js'
 import { basic } from './basic.js'
 import { useToast } from '../api/toast.js'

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from '../../external/vue.js'
+import { ref, onMounted } from 'vue'
 import { useGameDataStore } from '../../stores/gameData.js'
 import CustomInputForm from '../common/CustomInputForm.vue'
 import { showModal } from '../../api/modal.js'

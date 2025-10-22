@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from '../../../external/vue.js'
+import { ref, watch } from 'vue'
 import OperationCardArea from './OperationCardArea.vue'
 import { useExtensionsStore } from '../../../stores/extensions.js'
 

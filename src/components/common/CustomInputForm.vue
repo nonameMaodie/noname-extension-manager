@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, defineProps, defineEmits } from '../../external/vue.js'
+import { ref, onMounted, defineProps, defineEmits } from 'vue'
 
 const props = defineProps({
   title: { type: String, required: true },

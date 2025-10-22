@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineEmits } from '../../external/vue.js'
+import { defineProps, defineEmits } from 'vue'
 import { useExtensionsClassesStore } from '../../stores/extensionsClasses.js'
 
 const store = useExtensionsClassesStore()

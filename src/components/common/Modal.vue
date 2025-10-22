@@ -7,7 +7,7 @@ import {
   ref,
   watch,
   defineEmits,
-} from '../../external/vue.js'
+} from 'vue'
 import { autoZoom } from '../../utils/autoZoom.js'
 import { getDevice } from '../../utils/getDevice.js'
 

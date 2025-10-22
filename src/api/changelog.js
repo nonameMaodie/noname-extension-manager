@@ -1,4 +1,4 @@
-import { ui } from '../../external.js';
+import { ui } from '@noname';
 
 class ChangelogShadowDOM {
   static instance = null;

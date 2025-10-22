@@ -1,6 +1,6 @@
-import toast, { Toaster } from '../external/vue3-hot-toast.js'
-import { createApp } from '../external/vue.js'
-import { lib, ui, game } from '../external/noname.js'
+import toast, { Toaster } from 'vue3-hot-toast'
+import { createApp } from 'vue'
+import { lib, ui, game } from '@noname'
 import { autoZoom } from '../utils/autoZoom.js'
 
 let inited = false

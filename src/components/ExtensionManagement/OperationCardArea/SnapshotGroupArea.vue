@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watchEffect, onMounted } from '../../../external/vue.js'
+import { ref, watchEffect, onMounted } from 'vue'
 import { getTempId } from '../../../utils/getTempId.js'
 import { useSnapshotsStore } from '../../../stores/snapshots.js'
 import { showModal } from '../../../api/modal.js'

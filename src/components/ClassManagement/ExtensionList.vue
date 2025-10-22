@@ -1,7 +1,7 @@
 <script setup>
-import { defineProps, ref, watch, onMounted, onUnmounted } from '../../external/vue.js'
+import { defineProps, ref, watch, onMounted, onUnmounted } from 'vue'
 import ExtensionItem from './ExtensionItem.vue'
-import { useDraggable } from '../../external/vue-draggable-plus.js'
+import { useDraggable } from 'vue-draggable-plus'
 import { useExtensionsClassesStore } from '../../stores/extensionsClasses.js'
 import { useExtensionsStore } from '../../stores/extensions.js'
 import { getDevice } from '../../utils/getDevice.js'

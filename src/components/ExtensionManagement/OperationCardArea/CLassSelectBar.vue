@@ -3,7 +3,7 @@ import OperationCardArea from './OperationCardArea.vue'
 import CustomSelect from '../../common/CustomSelect.vue'
 import { useExtensionsStore } from '../../../stores/extensions.js'
 import { useExtensionsClassesStore } from '../../../stores/extensionsClasses.js'
-import { computed } from '../../../external/vue.js'
+import { computed } from 'vue'
 
 const store = useExtensionsStore()
 const classesStore = useExtensionsClassesStore()

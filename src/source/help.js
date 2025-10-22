@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '../external/noname.js'
+import { lib, game, ui, get, ai, _status } from '@noname'
 
 export const help = {
 

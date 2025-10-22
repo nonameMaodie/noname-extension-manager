@@ -1,5 +1,5 @@
 <script setup>
-  import { defineEmits, ref } from '../../external/vue.js'
+  import { defineEmits, ref } from 'vue'
   import vDrag from '../../utils/drag.js'
 
   const changed = ref(0)

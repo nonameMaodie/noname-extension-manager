@@ -1,4 +1,4 @@
-import { lib, game } from '../external/noname.js'
+import { lib, game } from '@noname'
 
 export function autoZoom(el, options) {
 	let { width, height } = options

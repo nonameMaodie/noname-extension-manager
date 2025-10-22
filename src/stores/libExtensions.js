@@ -1,5 +1,5 @@
-import { lib, game } from '../external/noname.js'
-import { ref, computed } from '../external/vue.js'
+import { lib, game } from '@noname'
+import { ref, computed } from 'vue'
 
 const extensions = lib.config.extensions.slice(0)
 if (lib.config.extensionSort && Array.isArray(lib.config.extensionSort)) {

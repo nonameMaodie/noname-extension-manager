@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps, defineEmits } from '../../external/vue.js'
+import { ref, defineProps, defineEmits } from 'vue'
 import ShowMore from '../common/ShowMore.vue'
 
 const props = defineProps({
