@@ -71,7 +71,7 @@ export const config = {
                         height:auto;
                         display:block;
                         max-height:calc(100% - 20px);
-                    " src="${basic.extensionDirectoryPath}image/gzh.jpg">
+                    " src="${basic.extensionDirectoryPath}/image/gzh.jpg">
                 `;
           break;
       }
