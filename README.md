@@ -16,21 +16,29 @@
 
 >**前置条件**：https://github.com/libnoname/noname/wiki/%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E6%97%A0%E5%90%8D%E6%9D%80%EF%BC%88%E7%A8%8B%E5%BA%8F%E5%91%98%E7%89%88%EF%BC%89
 
-在你的无名杀项目extension目录下执行以下命令
+#### 下载安装 
+
+在你的无名杀项目根目录下执行以下命令
 ```bash
+# 进入extension目录
+cd extension
+
 # 克隆仓库并将原项目重命名为 “扩展管家”
 git clone https://gitee.com/ninemangos/noname-extension-manager.git 扩展管家
 
 # 进入扩展管家目录
-cd 扩展管家
+cd 扩展管家 
 
 # 安装依赖
 pnpm install
+```
 
+#### 开发环境运行
+
+```bash
 # 返回至无名杀项目目录
 cd ../..
 
 # 运行无名杀
 pnpm dev
 ```
-
