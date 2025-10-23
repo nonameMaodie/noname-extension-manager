@@ -6,7 +6,7 @@ export default function writeDynamicFiles() {
   const content = JSON.stringify(info);
 
   // 生成README.md文件
-  const README = '# README\n\n' + updateHistory.map(item => {
+  const README = '# 更新内容\n\n' + updateHistory.map(item => {
     const changes = item.changes.map((change, index) => `${index + 1}. ${change}`).join('\n');
     return `## ${item.version} (${item.date})\n${changes}`;
   }).join('\n\n');
