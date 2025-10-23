@@ -2,10 +2,7 @@ import { fileURLToPath, URL } from "node:url";
 import vueDevTools from "vite-plugin-vue-devtools";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { resolve, basename } from "path";
-import info from "./src/extension/info.js";
 import writeFilePlugin from "./vite-plugins/vite-write-file-plugin.js";
-import autoRunBuildPlugin from "./vite-plugins/vite-auto-run-build-plugin.js";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 
@@ -17,13 +14,15 @@ export default defineConfig(({ command, mode }) => {
 		plugins: [
 			vue(),
 			vueDevTools(),
-			autoRunBuildPlugin(),
 			writeFilePlugin(),
 			viteStaticCopy({
 				targets: [
-					{ src: "gameData", dest: "" },
+          { src: "gameData", dest: "" },
 					{ src: "gameDataForMobile", dest: "" },
 					{ src: "snapshots", dest: "" },
+					{ src: "audio", dest: "" },
+					{ src: "image", dest: "" },
+          { src: "LICENSE", dest: ""  },
 				],
 			}),
       cssInjectedByJsPlugin()
@@ -38,21 +37,8 @@ export default defineConfig(({ command, mode }) => {
 		},
 		build: {
 			minify: !isDev && "terser", // 开发环境，禁用压缩，方便调试
-			sourcemap: isDev, // 开发环境，生成 sourcemap 文件
-			outDir: resolve(__dirname, `../${info.name}`), // 输出到与项目同级的 dist 目录
-
-			// lib: {
-			// 	entry: resolve(__dirname, "index.js"), // 库入口文件
-			// 	fileName: "extension", // 输出文件名（不含扩展名）
-			// 	formats: ["es"],
-			// },
+      sourcemap: true, // 启用 source map 生成
 			rollupOptions: {
-				// external(id, parent) {
-				// 	if (parent && basename(parent) === "external.js") {
-				// 		return true;
-				// 	}
-				// 	return false;
-				// },
         external: ["vue", "@noname"],
 				input: "extension.js", // 入口文件
 				output: {

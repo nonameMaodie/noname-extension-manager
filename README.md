@@ -14,7 +14,7 @@
 
 ### 程序员方式
 
->**前置条件**：https://github.com/libnoname/noname/wiki/%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E6%97%A0%E5%90%8D%E6%9D%80%EF%BC%88%E7%A8%8B%E5%BA%8F%E5%91%98%E7%89%88%EF%BC%89
+>**前置条件**：请参考官方文档 [如何运行无名杀（程序员版）](https://github.com/libnoname/noname/wiki/%E5%A6%82%E4%BD%95%E8%BF%90%E8%A1%8C%E6%97%A0%E5%90%8D%E6%9D%80%EF%BC%88%E7%A8%8B%E5%BA%8F%E5%91%98%E7%89%88%EF%BC%89)
 
 #### 下载安装 
 
@@ -36,9 +36,29 @@ pnpm install
 #### 开发环境运行
 
 ```bash
-# 返回至无名杀项目目录
+# 返回至无名杀项目根目录
 cd ../..
 
 # 运行无名杀
 pnpm dev
 ```
+
+#### 生成环境构建
+在 扩展管家 的项目根目录下执行以下命令
+```bash
+# 生产环境构建 - 启用极致压缩优化，输出文件体积更小
+pnpm build
+```
+或者
+```bash
+# 开发模式构建 - 保留代码格式和换行符，便于调试，输出文件体积较大
+pnpm build:dev
+```
+
+### 常规方式
+
+前往[发行版](https://gitee.com/ninemangos/noname-extension-manager/releases)下载已经打包好的扩展，使用“万能导入”等方法导入无名杀即可
+
+## 致谢
+
+感谢 **狂神** 大佬对本项目的架构改造与技术指导
