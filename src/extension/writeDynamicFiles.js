@@ -3,7 +3,7 @@ import updateHistory from './updateHistory.js';
 
 export default function writeDynamicFiles() {
   // 生成info.json文件
-  const content = JSON.stringify(info);
+  const content = JSON.stringify(info, null, 2);
 
   // 生成README.md文件
   const README = '# 更新内容\n\n' + updateHistory.map(item => {
