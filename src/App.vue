@@ -1,7 +1,7 @@
 <script setup>
 import ExtensionManger from './components/ExtensionManager.vue'
 import { defineProps, onMounted, onUnmounted, ref, nextTick } from 'vue'
-import { ui } from '@noname'
+import { ui } from 'noname'
 
 const { onCloseApp } = defineProps({
   onCloseApp: {

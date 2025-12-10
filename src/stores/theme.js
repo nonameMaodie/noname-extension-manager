@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ui, game } from '@noname'
+import { ui, game } from 'noname'
 
 export const useThemeStore = defineStore('theme', () => {
 	const themes = ['normal', 'dark']

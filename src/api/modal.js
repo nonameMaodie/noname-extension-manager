@@ -1,6 +1,6 @@
 import Modal from '../components/common/Modal.vue'
 import { createApp, h, ref } from 'vue'
-import { lib, ui, game } from '@noname'
+import { lib, ui, game } from 'noname'
 
 export function showModal(ModalProps, component, props) {
 	return new Promise(resolve => {

@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { lib, game } from '@noname'
+import { lib, game } from 'noname'
 import { basic } from '../source/basic.js'
 import { useToast } from '../api/toast.js'
 import { getDevice } from '../utils/getDevice.js'

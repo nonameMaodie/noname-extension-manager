@@ -4,7 +4,7 @@ import SearchBarArea from './OperationCardArea/SearchBarArea.vue'
 import SnapshotGroupArea from './OperationCardArea/SnapshotGroupArea.vue'
 import OperatedHistoryArea from './OperationCardArea/OperatedHistoryArea.vue'
 import ThemeArea from './OperationCardArea/ThemeArea.vue'
-import { game } from '@noname'
+import { game } from 'noname'
 </script>
 
 <template>

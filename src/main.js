@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { lib, ui, game } from '@noname'
+import { lib, ui, game } from 'noname'
 import { showModal } from './api/modal.js'
 import App from './App.vue'
 

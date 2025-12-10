@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { lib, game } from '@noname'
+import { lib, game } from 'noname'
 import { extensionList } from './libExtensions.js'
 import { basic } from '../source/basic.js'
 import { emitter } from '../utils/emitter.js'

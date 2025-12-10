@@ -1,4 +1,4 @@
-import { lib, game, ui, get, ai, _status } from '@noname'
+import { lib, game, ui, get, ai, _status } from 'noname'
 import { openApp } from '../main.js'
 import { createDraggableEl } from '../api/draggableEl.js'
 

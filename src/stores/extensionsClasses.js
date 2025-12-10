@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { extensionList, classes, recordClasses } from './libExtensions.js'
-import { game } from '@noname'
+import { game } from 'noname'
 import { useToast } from '../api/toast.js'
 
 export const useExtensionsClassesStore = defineStore('extensionsClasses', () => {

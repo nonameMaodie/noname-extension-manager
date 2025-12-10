@@ -1,6 +1,6 @@
 import toast, { Toaster } from 'vue3-hot-toast'
 import { createApp } from 'vue'
-import { lib, ui, game } from '@noname'
+import { lib, ui, game } from 'noname'
 import { autoZoom } from '../utils/autoZoom.js'
 
 let inited = false

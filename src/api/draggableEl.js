@@ -1,6 +1,6 @@
 import DraggableEl from '../components/common/DraggableEl.vue'
 import { createApp, h, ref } from 'vue'
-import { lib, ui, game } from '@noname'
+import { lib, ui, game } from 'noname'
 
 export function createDraggableEl(textContent, onClick) {
   const vn = h(DraggableEl, {

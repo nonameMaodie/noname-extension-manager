@@ -1,4 +1,4 @@
-import { lib, game } from '@noname'
+import { lib, game } from 'noname'
 import { ref, computed } from 'vue'
 
 const extensions = lib.config.extensions.slice(0)
