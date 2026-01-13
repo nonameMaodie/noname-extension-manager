@@ -118,7 +118,13 @@ pnpm build:dev
 ### 代码检查
 
 ```bash
-pnpm lint
+pnpm check
+```
+
+### 修复检查
+
+```bash
+pnpm fix
 ```
 
 ## 开发规范
