@@ -1,7 +1,7 @@
 <script setup>
-import UnaddedExtList from './UnaddedExtList.vue'
-import AddedExtList from './AddedExtList.vue'
-import ClassOperation from './ClassOperation.vue'
+  import AddedExtList from "./AddedExtList.vue";
+  import ClassOperation from "./ClassOperation.vue";
+  import UnaddedExtList from "./UnaddedExtList.vue";
 </script>
 
 <template>
@@ -15,18 +15,18 @@ import ClassOperation from './ClassOperation.vue'
 </template>
 
 <style scoped>
-.ext-list-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  padding: 15px;
-  gap: 15px;
-}
-.ext-list-content {
-  display: flex;
-  height: 100%;
-  gap: 15px;
-  flex: 1;
-}
+  .ext-list-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 15px;
+    gap: 15px;
+  }
+  .ext-list-content {
+    display: flex;
+    height: 100%;
+    gap: 15px;
+    flex: 1;
+  }
 </style>

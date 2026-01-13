@@ -7,10 +7,10 @@ export default function writeFilePlugin() {
     // 生成bundle钩子 - 创建文件
     generateBundle() {
       const dynamicList = writeDynamicFiles();
-      for (const {fileName, source} of dynamicList) {
+      for (const { fileName, source } of dynamicList) {
         // 使用emitFile API输出文件
         this.emitFile({
-          type: 'asset',
+          type: "asset",
           fileName, // 输出文件名
           source, // 文件内容
         });

@@ -1,15 +1,15 @@
 <script setup>
-import CLassSelectBar from './OperationCardArea/CLassSelectBar.vue'
-import SearchBarArea from './OperationCardArea/SearchBarArea.vue'
-import SnapshotGroupArea from './OperationCardArea/SnapshotGroupArea.vue'
-import OperatedHistoryArea from './OperationCardArea/OperatedHistoryArea.vue'
-import ThemeArea from './OperationCardArea/ThemeArea.vue'
-import { game } from 'noname'
+  import { game } from "noname";
+  import CLassSelectBar from "./OperationCardArea/CLassSelectBar.vue";
+  import OperatedHistoryArea from "./OperationCardArea/OperatedHistoryArea.vue";
+  import SearchBarArea from "./OperationCardArea/SearchBarArea.vue";
+  import SnapshotGroupArea from "./OperationCardArea/SnapshotGroupArea.vue";
+  import ThemeArea from "./OperationCardArea/ThemeArea.vue";
 </script>
 
 <template>
   <form @submit.prevent>
-	<SearchBarArea />
+    <SearchBarArea />
     <CLassSelectBar />
     <SnapshotGroupArea />
     <OperatedHistoryArea />
@@ -19,24 +19,24 @@ import { game } from 'noname'
 </template>
 
 <style scoped>
-form {
-  display: flex;
-  width: 230px;
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  align-self: start;
-  gap: 10px;
-  user-select: none;
-}
-.reload-game {
-  height: 16%;
-  background: var(--theme-dark);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
-  font-size: 22px;
-  color: var(--text-light);
-}
+  form {
+    display: flex;
+    width: 230px;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: start;
+    gap: 10px;
+    user-select: none;
+  }
+  .reload-game {
+    height: 16%;
+    background: var(--theme-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-size: 22px;
+    color: var(--text-light);
+  }
 </style>

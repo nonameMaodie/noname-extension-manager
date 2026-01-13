@@ -1,5 +1,3 @@
-import { lib, game, ui, get, ai, _status } from 'noname'
-import { basic } from './basic.js';
 import "../css/main.css";
 import "../css/theme.css";
 

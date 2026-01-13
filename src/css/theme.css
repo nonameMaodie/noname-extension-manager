@@ -1,7 +1,11 @@
 .kzgj-extension-manager-app,
 .kzgj-modal {
   /* 背景色 */
-  --bg-dark: linear-gradient(90deg, rgb(172, 203, 238, 0.75) 0%, rgba(231, 240, 253, 0.75) 100%);
+  --bg-dark: linear-gradient(
+    90deg,
+    rgb(172, 203, 238, 0.75) 0%,
+    rgba(231, 240, 253, 0.75) 100%
+  );
   --bg: rgba(255, 255, 255, 0.2);
   --bg-light: rgba(255, 255, 255, 0.3);
   --bg-secondary: hsl(208, 45%, 87%);
@@ -26,8 +30,8 @@
   --info: hsl(217 22% 41%);
 }
 
-[data-kzgj-theme="dark"]>.kzgj-extension-manager-app,
-[data-kzgj-theme="dark"]>.kzgj-modal {
+[data-kzgj-theme="dark"] > .kzgj-extension-manager-app,
+[data-kzgj-theme="dark"] > .kzgj-modal {
   /* 背景色 */
   --bg-dark: hsl(228 79% 2%);
   --bg: hsl(222 55% 5%);

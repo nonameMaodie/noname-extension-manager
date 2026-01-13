@@ -1,11 +1,13 @@
 import updateHistory from "./updateHistory.js";
+
 const lastest = updateHistory[0];
 
 export default {
-  "name": "扩展管家",
-  "author": "寰宇星城<br>现更新：芒果",
-  "intro": `此扩展用于管理各个扩展的顺序和隐藏、开启状态。（预装扩展无法通过本扩展排序或隐藏，你可以手动隐藏预装扩展）`,
-  "version": lastest.version,
-  "diskURL": "",
-  "forumURL": "https://gitee.com/ninemangos/noname-extension-manager"
+  name: "扩展管家",
+  author: "寰宇星城<br>现更新：芒果",
+  intro:
+    "此扩展用于管理各个扩展的顺序和隐藏、开启状态。（预装扩展无法通过本扩展排序或隐藏，你可以手动隐藏预装扩展）",
+  version: lastest.version,
+  diskURL: "",
+  forumURL: "https://gitee.com/ninemangos/noname-extension-manager",
 };

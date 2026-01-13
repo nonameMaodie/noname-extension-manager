@@ -1,7 +1,8 @@
 <script setup>
-import ExtensionList from './ExtensionList.vue'
-import { useExtensionsClassesStore } from '../../stores/extensionsClasses.js'
-const store = useExtensionsClassesStore()
+  import { useExtensionsClassesStore } from "../../stores/extensionsClasses.js";
+  import ExtensionList from "./ExtensionList.vue";
+
+  const store = useExtensionsClassesStore();
 </script>
 
 <template>

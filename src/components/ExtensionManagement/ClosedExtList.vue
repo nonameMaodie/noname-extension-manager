@@ -1,19 +1,19 @@
 <script setup>
-import ExtensionList from './ExtensionList.vue'
-import { useExtensionsStore } from '../../stores/extensions.js'
-import { emitter } from '../../utils/emitter.js'
+  import { useExtensionsStore } from "../../stores/extensions.js";
+  import { emitter } from "../../utils/emitter.js";
+  import ExtensionList from "./ExtensionList.vue";
 
-const store = useExtensionsStore()
+  const store = useExtensionsStore();
 
-function handleToggle(ext) {
-  store.toggleExtensionEnabled(ext)
-  emitter.emit('toggleExtensionEnabled', ext)
-}
+  function handleToggle(ext) {
+    store.toggleExtensionEnabled(ext);
+    emitter.emit("toggleExtensionEnabled", ext);
+  }
 
-function handleBatchToggle() {
-  emitter.emit('enableAllExtensions')
-  store.enableAllExtensions()
-}
+  function handleBatchToggle() {
+    emitter.emit("enableAllExtensions");
+    store.enableAllExtensions();
+  }
 </script>
 
 <template>

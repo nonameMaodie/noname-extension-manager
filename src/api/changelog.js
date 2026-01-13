@@ -1,9 +1,9 @@
-import { ui } from 'noname';
+import { ui } from "noname";
 
 class ChangelogShadowDOM {
   static instance = null;
 
-  constructor(hostElement, data, onClose = () => { }) {
+  constructor(hostElement, data, onClose = () => {}) {
     if (ChangelogShadowDOM.instance) {
       ChangelogShadowDOM.instance.close();
       ChangelogShadowDOM.instance = null;
@@ -11,14 +11,14 @@ class ChangelogShadowDOM {
     this.host = hostElement;
     this.data = data;
     this.onClose = onClose;
-    this.shadow = this.host.attachShadow({ mode: 'open' });
+    this.shadow = this.host.attachShadow({ mode: "open" });
     this.render();
     ChangelogShadowDOM.instance = this;
   }
 
   // 创建样式
   createStyles() {
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
           ::-webkit-scrollbar {
             display: none;
@@ -254,46 +254,46 @@ class ChangelogShadowDOM {
 
   // 生成更新日志HTML
   generateChangelog() {
-    const container = ui.create.div('.container');
+    const container = ui.create.div(".container");
 
     // 创建header
-    const header = document.createElement('header');
+    const header = document.createElement("header");
 
-    const h1 = document.createElement('h1');
-    h1.textContent = '《扩展管家》更新内容';
-    const subtitle = document.createElement('p');
-    subtitle.className = 'subtitle';
-    subtitle.textContent = '记录每一次优化';
+    const h1 = document.createElement("h1");
+    h1.textContent = "《扩展管家》更新内容";
+    const subtitle = document.createElement("p");
+    subtitle.className = "subtitle";
+    subtitle.textContent = "记录每一次优化";
 
     header.appendChild(h1);
     header.appendChild(subtitle);
     container.appendChild(header);
 
     // 创建timeline
-    const timeline = ui.create.div('.timeline#changelog-timeline');
+    const timeline = ui.create.div(".timeline#changelog-timeline");
 
     this.data.forEach((item, index) => {
-      const versionCard = ui.create.div('.version-card');
+      const versionCard = ui.create.div(".version-card");
       versionCard.style.animationDelay = `${0.1 * (index + 1)}s`;
 
-      const marker = ui.create.div('.version-marker');
-      const header = ui.create.div('.version-header');
-      const versionNumber = ui.create.div('.version-number');
+      const marker = ui.create.div(".version-marker");
+      const header = ui.create.div(".version-header");
+      const versionNumber = ui.create.div(".version-number");
       versionNumber.textContent = item.version;
-      const versionDate = ui.create.div('.version-date');
+      const versionDate = ui.create.div(".version-date");
       versionDate.textContent = item.date;
 
       header.appendChild(versionNumber);
       header.appendChild(versionDate);
 
-      const changesList = document.createElement('ul');
-      changesList.className = 'changes-list';
+      const changesList = document.createElement("ul");
+      changesList.className = "changes-list";
 
-      item.changes.forEach(change => {
-        const listItem = document.createElement('li');
+      item.changes.forEach((change) => {
+        const listItem = document.createElement("li");
         // 特殊处理Ciallo消息
-        if (change.includes('Ciallo')) {
-          listItem.className = 'special-note';
+        if (change.includes("Ciallo")) {
+          listItem.className = "special-note";
         }
         listItem.textContent = change;
         changesList.appendChild(listItem);
@@ -308,9 +308,9 @@ class ChangelogShadowDOM {
     container.appendChild(timeline);
 
     // 创建footer
-    const footer = document.createElement('footer');
-    const footerText = document.createElement('p');
-    footerText.textContent = `已经到底啦 Ciallo～(∠・ω＜)⌒★`;
+    const footer = document.createElement("footer");
+    const footerText = document.createElement("p");
+    footerText.textContent = "已经到底啦 Ciallo～(∠・ω＜)⌒★";
     footer.appendChild(footerText);
     container.appendChild(footer);
 
@@ -319,7 +319,7 @@ class ChangelogShadowDOM {
 
   // 生成关闭按钮
   generateCloseButton() {
-    const close = ui.create.div('.close');
+    const close = ui.create.div(".close");
     close.onclick = () => this.close();
     return close;
   }
@@ -341,7 +341,7 @@ class ChangelogShadowDOM {
   }
 }
 
-export function showChangelog(data, onClose = () => { }) {
+export function showChangelog(data, onClose = () => {}) {
   const changelog = ui.create.div(ui.window);
   changelog.style.cssText = `
     position: absolute;
@@ -350,8 +350,6 @@ export function showChangelog(data, onClose = () => { }) {
     width: 100%;
     height: 100%;
     z-index: 100;
-  `
+  `;
   new ChangelogShadowDOM(changelog, data, onClose);
 }
-
-

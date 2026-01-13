@@ -1,5 +1,5 @@
 <script setup>
-"这里必须写点东西，避免编译错误"
+  "这里必须写点东西，避免编译错误";
 </script>
 
 <template>
@@ -16,4 +16,3 @@
     ></path>
   </svg>
 </template>
-

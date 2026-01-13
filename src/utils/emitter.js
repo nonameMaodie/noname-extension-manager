@@ -1,8 +1,8 @@
 // 引入mitt
-import mitt from 'mitt'
+import mitt from "mitt";
 
 // 创建并暴露mitt
-export const emitter = mitt()
+export const emitter = mitt();
 
 // 绑定事件
 // emitter.on('abc',(value)=>{
