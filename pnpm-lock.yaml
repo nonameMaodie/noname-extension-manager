@@ -30,6 +30,9 @@ importers:
       '@vitejs/plugin-vue':
         specifier: ^6.0.1
         version: 6.0.1(vite@7.1.12(terser@5.44.0))(vue@3.5.22)
+      eslint:
+        specifier: ^9.33.0
+        version: 9.38.0
       eslint-plugin-vue:
         specifier: ~10.4.0
         version: 10.4.0(eslint@9.38.0)(vue-eslint-parser@10.2.0(eslint@9.38.0))
