@@ -9,7 +9,9 @@ export function createDraggableEl(textContent, onClick) {
       onClick,
       class: "kzgj-div-style roundarenabutton menubutton round",
     },
-    textContent
+    {
+      default: () => textContent
+    }
   );
   const app = createApp(vn);
   const vm = app.mount(document.createElement("div"));
