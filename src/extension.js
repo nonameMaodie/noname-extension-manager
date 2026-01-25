@@ -10,7 +10,6 @@ export const type = "extension";
 export default async function () {
   const extension = {
     name: extensionInfo.name,
-    editable: false,
     content,
     precontent,
     config: await basic.resolve(config),
