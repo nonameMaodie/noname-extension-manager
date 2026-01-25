@@ -3,13 +3,14 @@ import { ui } from "noname";
 class ChangelogShadowDOM {
   static instance = null;
 
-  constructor(hostElement, data, onClose = () => {}) {
+  constructor(hostElement, data, extname, onClose = () => { }) {
     if (ChangelogShadowDOM.instance) {
       ChangelogShadowDOM.instance.close();
       ChangelogShadowDOM.instance = null;
     }
     this.host = hostElement;
     this.data = data;
+    this.extname = extname;
     this.onClose = onClose;
     this.shadow = this.host.attachShadow({ mode: "open" });
     this.render();
@@ -341,7 +342,7 @@ class ChangelogShadowDOM {
   }
 }
 
-export function showChangelog(data, onClose = () => {}) {
+export function showChangelog(data, extname, onClose = () => { }) {
   const changelog = ui.create.div(ui.window);
   changelog.style.cssText = `
     position: absolute;
@@ -351,5 +352,5 @@ export function showChangelog(data, onClose = () => {}) {
     height: 100%;
     z-index: 100;
   `;
-  new ChangelogShadowDOM(changelog, data, onClose);
+  new ChangelogShadowDOM(changelog, data, extname, onClose);
 }

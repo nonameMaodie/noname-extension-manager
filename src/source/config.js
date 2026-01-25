@@ -2,6 +2,7 @@ import { game, lib, ui } from "noname";
 import { showChangelog } from "../api/changelog.js";
 import { useToast } from "../api/toast.js";
 import updateHistory from "../extension/updateHistory.js";
+import info from "../extension/info.js";
 import { openApp } from "../main.js";
 import { basic } from "./basic.js";
 
@@ -26,7 +27,7 @@ export const config = {
             mutation.attributeName === "class" &&
             switcher.classList.contains("on")
           ) {
-            showChangelog(updateHistory, () => {
+            showChangelog(updateHistory, info.name, () => {
               const popupContainer =
                 ui.window.querySelector(".popup-container");
               if (popupContainer) {
@@ -100,6 +101,33 @@ export const config = {
       game.closeMenu();
       openApp();
     },
+  },
+
+  "repository": {
+    clear: true,
+    name: `<ins style="color:#fe7300">Gitee仓库地址</ins>`,
+    async onclick() {
+      const toast = useToast();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(info.diskURL);
+        toast("复制成功！");
+      } else {
+        toast("复制失败！");
+      }
+    }
+  },
+  "repository2": {
+    clear: true,
+    name: `<ins style="color:#ff79c6">Github仓库地址</ins>`,
+    async onclick() {
+      const toast = useToast();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(info.forumURL);
+        toast("复制成功！");
+      } else {
+        toast("复制失败！");
+      }
+    }
   },
 
   //来自十周年UI author:点点
