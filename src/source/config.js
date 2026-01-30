@@ -51,7 +51,7 @@ export const config = {
   },
 
   compatibility: {
-    name: "最低适配：v1.10.10",
+    name: "最低适配：v1.11.0",
     clear: true,
     nopointer: true,
   },
