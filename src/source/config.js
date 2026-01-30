@@ -5,6 +5,7 @@ import updateHistory from "../extension/updateHistory.js";
 import info from "../extension/info.js";
 import { openApp } from "../main.js";
 import { basic } from "./basic.js";
+import { checkForUpdates } from "../api/update.js";
 
 let observed = false;
 
@@ -153,6 +154,20 @@ export const config = {
         toast("复制失败！");
       }
     }
+  },
+
+  checkForUpdates: {
+    clear: true,
+    name: '<button>检查更新</button>',
+    onclick: checkForUpdates,
+  },
+
+  autoCheckForUpdates: {
+    name: "自动检查更新",
+    intro: "开启后每次启动游戏时检查更新",
+    onclick(item) {
+      game.saveExtensionConfig("扩展管家", "autoCheckForUpdates", item);
+    },
   },
 
   //来自十周年UI author:点点
