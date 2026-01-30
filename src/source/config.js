@@ -103,7 +103,32 @@ export const config = {
     },
   },
 
-  "repository": {
+  uninstall_invalid_exts: {
+    clear: true,
+    name: `<ins style="color:#ff433f">一键卸载无效扩展</ins>`,
+    async onclick() {
+      const valid_exts = (await game.promises.getFileList(lib.assetURL + "extension"))[0];
+      const invalid_exts = lib.config.extensions.filter(ext => !valid_exts.includes(ext));
+      if (invalid_exts.length) {
+        if (confirm(`确定要卸载以下无效扩展吗？\n${invalid_exts.join("、")}`)) {
+          for (const ext of invalid_exts) {
+            try {
+              await game.removeExtension(ext);
+              await game.delay();
+              useToast().success(`卸载${ext}成功`);
+            } catch (e) {
+              console.error(`卸载${ext}失败`, e);
+              useToast().error(`卸载${ext}失败`);
+            }
+          }
+        }
+      } else {
+        useToast().success("没有无效扩展");
+      }
+    }
+  },
+
+  repository: {
     clear: true,
     name: `<ins style="color:#fe7300">Gitee仓库地址</ins>`,
     async onclick() {
@@ -116,7 +141,7 @@ export const config = {
       }
     }
   },
-  "repository2": {
+  repository2: {
     clear: true,
     name: `<ins style="color:#ff79c6">Github仓库地址</ins>`,
     async onclick() {
