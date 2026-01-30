@@ -39,7 +39,7 @@ export default defineConfig(({ command, mode }) => {
     },
     build: {
       minify: !isDev && "terser", // 开发环境，禁用压缩，方便调试
-      sourcemap: true, // 启用 source map 生成
+      sourcemap: isDev, // source map 生成
       rollupOptions: {
         external: ["vue", "noname"],
         input: "extension.js", // 入口文件
