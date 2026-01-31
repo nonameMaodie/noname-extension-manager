@@ -23,6 +23,7 @@ export default defineConfig(({ command, mode }) => {
           { src: "audio", dest: "" },
           { src: "image", dest: "" },
           { src: "LICENSE", dest: "" },
+          { src: ".gitignore", dest: "" },
         ],
       }),
       cssInjectedByJsPlugin(),
