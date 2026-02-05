@@ -3,6 +3,21 @@ import { computed, ref } from "vue";
 
 const extensions = lib.config.extensions.slice(0);
 if (lib.config.extensionSort && Array.isArray(lib.config.extensionSort)) {
+  // 重新给扩展排序
+  const sort_is_byname = game.getExtensionConfig("扩展管家", "sort_is_byname");
+  const sort_is_ascending = game.getExtensionConfig("扩展管家", "sort_is_ascending");
+  if (typeof sort_is_byname === "boolean") {
+    const valList = lib.config.extensionSort;
+    if (sort_is_byname) {
+      const getName = (ext) => ext.replace("extension_", "");
+      sort_is_ascending ? valList.sort((a, b) => getName(a).localeCompare(getName(b), "zh-CN")) : valList.sort((a, b) => getName(b).localeCompare(getName(a), "zh-CN"));
+    } else {
+      const getStatus = (ext) => lib.config[`${ext}_enable`];
+      sort_is_ascending ? valList.sort((a, b) => getStatus(a) - getStatus(b)) : valList.sort((a, b) => getStatus(b) - getStatus(a));
+    }
+    game.saveConfig("extensionSort", valList);
+  }
+
   extensions.sort((a, b) => {
     return (
       lib.config.extensionSort.indexOf("extension_" + a) -
