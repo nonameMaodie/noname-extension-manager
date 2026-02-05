@@ -1,5 +1,13 @@
 export default [
   {
+    version: "v3.3.0",
+    date: "2026-02-05",
+    changes: [
+      "Ciallo～(∠・ω＜)⌒★",
+      "新增了多种快捷排序操作",
+    ],
+  },
+  {
     version: "v3.2.0",
     date: "2026-01-31",
     changes: [
