@@ -12,11 +12,12 @@
 
   const app = ref(null);
   let observer;
-  const oldZIndex = getComputedStyle(ui.menuContainer).zIndex;
+  let oldZIndex;
 
   onMounted(async () => {
     await nextTick();
     // 更改菜单容器的z-index
+    oldZIndex = getComputedStyle(ui.menuContainer).zIndex;
     ui.menuContainer.style.zIndex = 10;
     // 实时切换背景图片
     const el = app.value.$el;
@@ -42,7 +43,7 @@
 
   onUnmounted(() => {
     observer?.disconnect?.();
-    ui.menuContainer.style.zIndex = oldZIndex;
+    oldZIndex && (ui.menuContainer.style.zIndex = oldZIndex);
   });
 </script>
 

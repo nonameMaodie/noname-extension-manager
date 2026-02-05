@@ -29,7 +29,9 @@ export async function content(config, pack) {
     }
     case "draggable_btn": {
       lib.arenaReady.push(() => {
-        createDraggableEl("管", openApp);
+        setTimeout(() => {
+          createDraggableEl("管", openApp);
+        }, 500);
       });
       break;
     }

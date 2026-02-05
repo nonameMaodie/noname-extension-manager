@@ -110,6 +110,7 @@
     flex-direction: column;
     justify-content: space-between;
     max-height: 300px;
+    padding: 10px;
   }
   .snapshot-item {
     display: flex;
@@ -142,5 +143,6 @@
   }
   .snapshot-item-actions button:hover {
     background: var(--info);
+    color: var(--text-light);
   }
 </style>

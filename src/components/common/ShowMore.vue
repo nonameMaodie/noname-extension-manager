@@ -78,7 +78,6 @@
     background: var(--bg-secondary);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 12px;
     width: 100%;
     max-width: 100%;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);

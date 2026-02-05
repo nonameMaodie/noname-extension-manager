@@ -122,6 +122,7 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 10px;
+    padding: 12px;
     align-items: center;
   }
 </style>

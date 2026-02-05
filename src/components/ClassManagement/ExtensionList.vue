@@ -4,7 +4,10 @@
   import { useExtensionsStore } from "../../stores/extensions.js";
   import { useExtensionsClassesStore } from "../../stores/extensionsClasses.js";
   import { getDevice } from "../../utils/getDevice.js";
+  import { useToast } from "../../api/toast.js";
+  import { game } from "noname";
   import ExtensionItem from "./ExtensionItem.vue";
+  import ShowMore from "../common/ShowMore.vue";
 
   const store = useExtensionsClassesStore();
   const extsStore = useExtensionsStore();
@@ -18,7 +21,16 @@
     extensions: { type: Array, default: () => [] },
   });
 
+  const isAscending = ref(game.getExtensionConfig("扩展管家", "sort_is_ascending") ?? false); // true | false
+  const isByName = ref(game.getExtensionConfig("扩展管家", "sort_is_byname") ?? null); // true | false | null
+
+  watch([isAscending, isByName], (val) => { 
+    game.saveExtensionConfig("扩展管家", "sort_is_ascending", val[0]);
+    game.saveExtensionConfig("扩展管家", "sort_is_byname", val[1]);
+  })
+
   // 以下是排序相关
+  let clickedSortMethod = ref(null); // 是否点击了“排序方式”
   let swapItem = () => {};
   if (getDevice() !== "mobile") {
     itemDraggable.value = store.currentClass.id === 0;
@@ -26,6 +38,7 @@
     introText.value = "拖拽右边的扩展卡片排序";
     const draggable = useDraggable(el, props.extensions, {
       onUpdate() {
+        isByName.value = null;
         extsStore.updateExtensionSort();
       },
       animation: 200,
@@ -72,6 +85,7 @@
       const index1 = valList.indexOf(firstClick[0]);
       const index2 = valList.indexOf(ext);
       [valList[index1], valList[index2]] = [valList[index2], valList[index1]];
+      isByName.value = null;
       extsStore.updateExtensionSort();
       firstClick = null;
     };
@@ -88,12 +102,81 @@
       document.removeEventListener("click", clickItemOutside);
     });
   }
+
+  function sortByName(){
+    const valList = props.extensions;
+    isByName.value = true;
+    isAscending.value ? valList.sort((a, b) => a.name.localeCompare(b.name, "zh-CN")) : valList.sort((a, b) => b.name.localeCompare(a.name, "zh-CN"));
+    extsStore.updateExtensionSort();
+  }
+
+  function sortByStatus(){
+    const valList = props.extensions;
+    isByName.value = false;
+    const getStatus = (ext) => lib.config[`extension_${ext.name}_enable`];
+    isAscending.value ? valList.sort((a, b) => getStatus(a)- getStatus(b)) : valList.sort((a, b) => getStatus(b)- getStatus(a));
+    extsStore.updateExtensionSort();
+  }
+
+  function changeAscending(value){
+    
+    value = !!value;
+    if(isAscending.value === value) return;
+    isAscending.value = value;
+    if(typeof isByName.value === "boolean"){
+      isByName.value ? sortByName() : sortByStatus();
+    }
+  }
+
+  function itemToTop(ext) {
+    const toast = useToast();
+    if (store.currentClass.id !== 0) return;
+    const valList = props.extensions;
+    const index = valList.indexOf(ext);
+    if (index === 0) return;
+    valList.splice(index, 1);
+    valList.unshift(ext);
+    toast(ext.name + "已置顶", {
+      icon: "⬆️"
+    });
+    isByName.value = null;
+    extsStore.updateExtensionSort();
+  }
+  function itemToBottom(ext) {
+    const toast = useToast();
+    if (store.currentClass.id !== 0) return;
+    const valList = props.extensions;
+    const index = valList.indexOf(ext);
+    if (index === valList.length - 1) return;
+    valList.splice(index, 1);
+    valList.push(ext);
+    toast(ext.name + "已置底", {
+      icon: "⬇️"
+    });
+    isByName.value = null;
+    extsStore.updateExtensionSort();
+  }
 </script>
 
 <template>
   <div class="ext-list">
     <div class="list-header">
       <div class="list-name">{{ title }} ({{ extensions.length }})</div>
+      <button class="batch-btn"
+        v-if="store.currentClass.id === 0 && extensions.length"
+        @click = "clickedSortMethod = !clickedSortMethod"
+      >
+        ↿⇂ 排序方式
+        <ShowMore v-model="clickedSortMethod" :limit="0">
+          <div class="show-more-content">
+            <button class="batch-btn show-more-item" :class="{ 'active': isByName === true}" @click="sortByName">名称</button>
+            <button class="batch-btn show-more-item" :class="{ 'active': isByName === false}" @click="sortByStatus">状态</button>
+            <div style="width: 100%; height: 0; border-bottom: 3px dashed var(--border-muted);"></div>
+            <button class="batch-btn show-more-item" :class="{ 'active': isAscending }" @click="changeAscending(true)">升序</button>
+            <button class="batch-btn show-more-item" :class="{ 'active': !isAscending }" @click="changeAscending(false)">降序</button>
+          </div>
+        </ShowMore>
+      </button>
     </div>
     <ul
       v-if="store.currentClass.id === 0 && !extensions.length"
@@ -113,7 +196,10 @@
         v-for="ext in extensions"
         :key="ext.id"
         :extension="ext"
+        :showActions="Boolean(store.currentClass.id === 0 && extensions.length)"
         @toggle="$emit('toggle', ext)"
+        @toTop="itemToTop(ext)"
+        @toBottom="itemToBottom(ext)"
         @click="swapItem(ext, $event)"
         :class="{ 'list-item-draggable': itemDraggable }"
       />
@@ -143,15 +229,36 @@
   }
   .batch-btn {
     border: 1.5px solid var(--border);
+    position: relative;
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 15px;
   }
-  .batch-btn:hover[data-type="openAll"] {
-    background: var(--success);
+  .batch-btn:hover {
+    background: var(--theme);
   }
-  .batch-btn:hover[data-type="closeAll"] {
-    background: var(--danger);
+  .show-more-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 7px;
+    align-items: center;
+  }
+  .show-more-content button {
+    position: relative;
+    border: 1px solid var(--info);
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    width: 100%;
+  }
+  .show-more-content button.active::before{
+    content: "•";
+    position: absolute;
+    font-size: 15.5px;
+    left: 0;
+    padding-left: 12px;
   }
   ul.list-items {
     position: relative;
